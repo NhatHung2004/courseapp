@@ -39,10 +39,17 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'rest_framework',
-    'drf_yasg'
+    'drf_yasg',
+    'oauth2_provider'
 ]
 
 CKEDITOR_UPLOAD_PATH = "images/ckeditor/"
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+    )
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -77,12 +84,22 @@ WSGI_APPLICATION = 'courseapisv2.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'coursedb',
+#         'USER': 'root',
+#         'PASSWORD': 'Admin@123',
+#         'HOST': ''  # mặc định localhost
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'coursedb',
-        'USER': 'root',
-        'PASSWORD': 'Admin@123',
+        'USER': 'NhatHung',
+        'PASSWORD': 'nhathung123',
         'HOST': ''  # mặc định localhost
     }
 }
@@ -133,3 +150,17 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+import cloudinary
+
+cloudinary.config( 
+    cloud_name = "dxeinnlqb", 
+    api_key = "946396877789367", 
+    api_secret = "Q9QIZn2jrggpWxrNSL3Asb-8-ec", # Click 'View API Keys' above to copy your API secret
+    secure=True
+)
+
+OAUTH2_PROVIDER = { 'OAUTH2_BACKEND_CLASS': 'oauth2_provider.oauth2_backends.JSONOAuthLibCore' }
+
+CLIENT_ID = 'QlkMqGC3lesTls8cxYt4HBKvvCVfQo8eBCfTdm0U'
+CLIENT_SECRET = 'T6i6R1Z1em11W95nXwla3GdRm18M2HUg3bXS9WJhvWrRCXBc0U2y66qKoSKhL3ZZlUqNLGxot1gATIXH4BTEt619i1hdodZPv8Oc1KD8x940XdHAg22LsQEDb2JK9APE'
